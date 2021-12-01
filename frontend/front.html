@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>STUDYflow</title>
+        <link rel="stylesheet" href="front.css" />
+        <script src="studyflow.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="logobar">
+            <div class="logodiv">
+                <img src="https://i.ibb.co/7JBFTVg/STUDYflow-logo.png" alt="STUDYflow" class="sflogo">
+            </div>
+        </div>
+
+        <!--column with settings & business graph-->
+        <div class="row">
+            <div class="column">
+            <h1>Settings</h1>
+
+            <div class="list-choice">
+                <div class="list-choice-title">Sort by</div>
+                <div class="list-choice-objects">
+                  <label><input type="radio" name="B"/><span>Busy</span></label>
+                  <label><input type="radio" name="M"/><span>Moderately busy</span></label>
+                  <label><input type="radio" name="N"/><span>Not busy</span></label>
+                </div>
+            </div>
+
+            <div class="list-choice">
+            <div class="list-choice-title">Filter</div>
+            <div class="list-choice-objects">
+                <label><input type="radio" name="G"/><span>Group study</span></label>
+                <label><input type="radio" name="I"/><span>Individual study</span></label>
+                <label><input type="radio" name="Q"/><span>Quiet floor</span></label>
+                <label><input type="radio" name="C"/><span>Computers</span></label>
+                <label><input type="radio" name="R"/><span>Restrooms</span></label>
+            </div>
+            </div>
+            <div class="graph">
+                put graph here
+            </div>
+        </div>
+
+
+             <!--column with library floors-->
+            <div class="column">
+            <h1>Select floor</h1>
+
+            </div>
+        </div>
+
+        <div class="floor" id="0">
+            <span id></span>
+        </div>
+
+        <div class="footer">
+
+        </div>
+    </body>
+
+
+    <!-- 
+        NOTES:
+        For the libaray, create 26 divs:
+        class="floor" - in the shape of a rectangle with padding for text
+        id="0" (LL), id="1" (E), id="2",...,id="26"
+        
+
+    -->
+    
