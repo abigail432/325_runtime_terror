@@ -110,6 +110,7 @@ button {
     display: block;
     background: #bdbdbd;
     text-align: center;
+    font-size: 16px;
     padding: 0.55em 1em;
     color: #FFF;
     text-shadow: 0 1px 0 #CACACA;
@@ -129,14 +130,18 @@ button {
 
 /*libaray floor design begins here*/
 .floor {
+    font-size: 16px;
+    font-family: 'Source Sans Pro', sans-serif;
     width: 200px;
     height: 30px;
-    background-color: tomato;
+    background-color: rgb(189, 118, 211);
     border-style: solid;
     border-width: 2.5px;
     border-radius: 0.2em;
     margin-left: auto;
     margin-right: auto;
+    padding-top: 2px;
+
 }
 /*design for floors end here*/
 
