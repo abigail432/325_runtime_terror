@@ -203,9 +203,9 @@ function App() {
                     style={{"width": "calc(100% - 60px)", "margin-left": "30px"}}
                     onChange={(e) => handleSort(e.target.value)}
                   >
-                    <option value="1">Floor Number</option>
-                    <option value="2">Not Busy to Busy</option>
-                    <option value="3">Busy to Not Busy</option>
+                    <option value="1" className="text-center">Floor Number</option>
+                    <option value="2" className="text-center">Not Busy to Busy</option>
+                    <option value="3" className="text-center">Busy to Not Busy</option>
                   </Form.Select>
                 </Form.Group>
               </Col>
@@ -217,10 +217,10 @@ function App() {
                     style={{"width": "calc(100% - 60px)", "margin-left": "20px"}}
                     onChange={(e) => handleFilter(e.target.value)}
                   >
-                    <option value="0">None</option>
-                    <option value="1">Quiet Floor</option>
-                    <option value="2">Group Study</option>
-                    <option value="3">Other</option>
+                    <option value="0" className="text-center">None</option>
+                    <option value="1" className="text-center">Quiet Floor</option>
+                    <option value="2" className="text-center">Group Study</option>
+                    <option value="3" className="text-center">Other</option>
                   </Form.Select>
                 </Form.Group>
               </Col>
