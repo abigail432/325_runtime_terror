@@ -279,7 +279,7 @@ function App() {
             <Form className="">
               <Row className="g-2"> 
                 <Button variant="secondary" className="popular-times" onClick={handleShow}>
-                  Popular Times
+                  Popular Times of W.E.B Du Bois
                 </Button>
               </Row>
               <Row className="g-2">
@@ -312,7 +312,7 @@ function App() {
     {show && <Stats handleClose={handleClose}></Stats>}
 
       <div className="footer">
-          <p>W.E.B Du Bois</p>
+          {/*<p>W.E.B Du Bois</p>*/}
       </div>
 
     </div>
@@ -382,7 +382,7 @@ function Stats({handleClose}) {
                   Back
           </Button>
       </Row>
-    <p className="graph-title" style={{"font-weight": "bold"}}>Average Business - This Week </p>
+    <p className="graph-title" style={{"font-weight": "bold"}}>Average W.E.B Du Bois Business / Week </p>
     <ResponsiveContainer width="100%" height="85%">
       <BarChart
         width="100%" 

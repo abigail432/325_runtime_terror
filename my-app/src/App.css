@@ -197,7 +197,7 @@ p {
 /* Library structure */
 
 #library {
-height: 410px;
+height: 450px;
 overflow-y: scroll;
 display: flex;
 flex-direction: column;
@@ -223,6 +223,7 @@ border-width: 2px !important;
   border-color: #959595 !important;
   color: black;
   font-weight: 700;
+  margin-top: 0px;
 }
 
 #sort-button:hover, #filter-button:hover {
