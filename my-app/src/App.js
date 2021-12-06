@@ -1,10 +1,12 @@
 import './App.css';
 import React, {useEffect, useState, useRef} from 'react';
 import Form from 'react-bootstrap/Form';
-import { BarChart, ScatterChart, Bar, Scatter, Cell, XAxis, YAxis, Label, LabelList, Tooltip, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, Cell, XAxis, YAxis, Label, LabelList, Tooltip, ResponsiveContainer } from 'recharts';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
 const initialFloors = [
   //busy:
@@ -53,6 +55,9 @@ function App() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const [selectedSort, setSelectedSort] = useState("1");
+  const [selectedFilter, setSelectedFilter] = useState("0");
 
   const render = () => {
       let board = document.getElementById('library');
@@ -122,6 +127,7 @@ function App() {
     if(type === "1") { //floor num  
       setSorted(initialFloors);
       setFloors(initialFloors);
+      setSelectedSort("1")
     }
 
     else if(type === "2") { //not busy to busy
@@ -129,33 +135,101 @@ function App() {
       newFloors.sort(compareBusinessUp);
       setSorted(newFloors);
       setFloors(newFloors);
+      setSelectedSort("2")
     }
     else if(type === "3") { //busy to not busy
       const newFloors = [...sortedFloors];
       newFloors.sort(compareBusinessDown);
       setSorted(newFloors);
       setFloors(newFloors);
+      setSelectedSort("3")
     }
   }
 
-  const handleFilter = (type) => {
+  const handleFilter = (e, type) => {
+    e.target.classList.toggle("selected");
+
     if(type === "0") {
       setFloors(sortedFloors);
+      setSelectedFilter("0")
     }
     else if(type === "1") { //quiet
       const newFloors = sortedFloors.filter((floor) => {return floor.type === 0});
       setFloors(newFloors);
+      setSelectedFilter("1")
     }
     else if(type === "2") { //group
       const newFloors = sortedFloors.filter((floor) => {return floor.type === 1});
       setFloors(newFloors);
+      setSelectedFilter("2")
     }
     else if(type === "3") { //other
       const newFloors = sortedFloors.filter((floor) => {return floor.type === 2});
       setFloors(newFloors);
+      setSelectedFilter("3")
     }
   }
 
+  const toggleSelectedFilter = (selectedFilter)  => {
+      const selected = selectedFilter;
+
+      if(selected !== "0") {
+        document.getElementById("filter-button-0")?.classList.remove("selected");
+      }
+
+      if(selected !== "1") {
+        document.getElementById("filter-button-1")?.classList.remove("selected");
+      }
+
+      if(selected !== "2") {
+        document.getElementById("filter-button-2")?.classList.remove("selected");
+      }
+
+      if(selected !== "3") {
+        document.getElementById("filter-button-3")?.classList.remove("selected");
+      }
+
+      //add class
+      if(selected === "0") {
+        document.getElementById("filter-button-0")?.classList.add("selected");
+      }
+      else if(selected === "1") {
+        document.getElementById("filter-button-1")?.classList.add("selected");
+      }
+      else if(selected === "2") {
+        document.getElementById("filter-button-2")?.classList.add("selected");
+      }
+      else if(selected === "3") {
+        document.getElementById("filter-button-3")?.classList.add("selected");
+      }
+  }
+
+  const toggleSelectedSort = (selectedSort)  => {
+    const selected = selectedSort;
+
+    if(selected !== "1") {
+      document.getElementById("sort-button-1")?.classList.remove("selected");
+    }
+
+    if(selected !== "2") {
+      document.getElementById("sort-button-2")?.classList.remove("selected");
+    }
+
+    if(selected !== "3") {
+      document.getElementById("sort-button-3")?.classList.remove("selected");
+    }
+
+    //add class
+    if(selected === "1") {
+      document.getElementById("sort-button-1")?.classList.add("selected");
+    }
+    else if(selected === "2") {
+      document.getElementById("sort-button-2")?.classList.add("selected");
+    }
+    else if(selected === "3") {
+      document.getElementById("sort-button-3")?.classList.add("selected");
+    }
+  }
 
   useEffect(() => {
     render();
@@ -173,6 +247,21 @@ function App() {
     }
   },[floors, show])
 
+  useEffect(() => {
+    toggleSelectedFilter(selectedFilter);
+  }, [selectedFilter])
+
+  useEffect(() => {
+    toggleSelectedSort(selectedSort);
+  }, [selectedSort])
+
+  useEffect(() => {
+    setFloors(initialFloors);
+    return () => {
+
+    }
+  },[show])
+
   return (
     <div className="App">
 
@@ -184,8 +273,6 @@ function App() {
 
 
     {!show &&
-
-
         <div className="row">
             <div className="column px-0">
 
@@ -197,32 +284,20 @@ function App() {
               </Row>
               <Row className="g-2">
               <Col>
-                <Form.Group className="mb-3 w-100" controlId="sort">
-                  <Form.Label className="mb-1">Sort By</Form.Label>
-                  <Form.Select className="text-center" aria-label="Default select example"
-                    style={{"width": "calc(100% - 60px)", "margin-left": "30px"}}
-                    onChange={(e) => handleSort(e.target.value)}
-                  >
-                    <option value="1" className="text-center">Floor Number</option>
-                    <option value="2" className="text-center">Not Busy to Busy</option>
-                    <option value="3" className="text-center">Busy to Not Busy</option>
-                  </Form.Select>
-                </Form.Group>
+                <DropdownButton variant="secondary" id="sort-button" title="Sort By" style={{"width": "calc(100% - 30px)", "margin-left": "15px"}}>
+                  <Dropdown.Item href="#/action-1" id="sort-button-1" className="selected" onClick={(e) => handleSort("1")}>Floor #</Dropdown.Item>
+                  <Dropdown.Item href="#/action-2" id="sort-button-2" onClick={(e) => handleSort("2")}>Not Busy to Busy</Dropdown.Item>
+                  <Dropdown.Item href="#/action-3" id="sort-button-3" onClick={(e) => handleSort("3")}>Busy to Not Busy</Dropdown.Item>
+                </DropdownButton>
               </Col>
 
               <Col>
-                <Form.Group className="mb-3 w-100" controlId="filter">
-                  <Form.Label className="mb-1">Filter By</Form.Label>
-                  <Form.Select className="text-center" aria-label="Default select example"
-                    style={{"width": "calc(100% - 60px)", "margin-left": "20px"}}
-                    onChange={(e) => handleFilter(e.target.value)}
-                  >
-                    <option value="0" className="text-center">None</option>
-                    <option value="1" className="text-center">Quiet Floor</option>
-                    <option value="2" className="text-center">Group Study</option>
-                    <option value="3" className="text-center">Other</option>
-                  </Form.Select>
-                </Form.Group>
+                <DropdownButton variant="secondary" id="filter-button" title="Filter By" style={{"width": "calc(100% - 30px)", "margin-left": "5px"}}>
+                  <Dropdown.Item href="#/action-1" id="filter-button-0" className="selected" onClick={(e) => handleFilter(e, "0")}>None</Dropdown.Item>
+                  <Dropdown.Item href="#/action-2" id="filter-button-1" onClick={(e) => handleFilter(e, "1")}>Quiet Study</Dropdown.Item>
+                  <Dropdown.Item href="#/action-3" id="filter-button-2" onClick={(e) => handleFilter(e, "2")}>Group Study</Dropdown.Item>
+                  <Dropdown.Item href="#/action-3" id="filter-button-3" onClick={(e) => handleFilter(e, "3")}>Other</Dropdown.Item>
+                </DropdownButton>
               </Col>
               </Row>
             </Form>
@@ -232,7 +307,6 @@ function App() {
             </div>
             </div>
         </div>
-
     }
 
     {show && <Stats handleClose={handleClose}></Stats>}
@@ -308,7 +382,7 @@ function Stats({handleClose}) {
                   Back
           </Button>
       </Row>
-    <p className="graph-title">Average Business - This Week </p>
+    <p className="graph-title" style={{"font-weight": "bold"}}>Average Business - This Week </p>
     <ResponsiveContainer width="100%" height="85%">
       <BarChart
         width="100%" 
