@@ -38,7 +38,7 @@ const initialFloors = [
   {floor: 17, busy: 1, type:0, tilte:"Quiet Study"},
   {floor: 18, busy: 2, type:1, tilte:"Group Study"},
   {floor: 19, busy: 2, type:2, tilte:"Office of Scholarly Communication"},
-  {floor: 20, busy: 2, type:0, tilte:"Quiet Study},
+  {floor: 20, busy: 2, type:0, tilte:"Quiet Study"},
   {floor: 21, busy: 2, type:1, tilte:"Group Study"},
   {floor: 22, busy: 2, type:2, tilte:"W. E. B. Du Bois Center"},
   {floor: 23, busy: 2, type:1, tilte:"Group Study"},
